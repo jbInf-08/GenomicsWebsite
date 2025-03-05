@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Manager - Cancer Genomics Tool</title>
+    <style>
+        /* Include base styles from homepage */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Data Manager specific styles */
+        .data-manager-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .data-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .data-grid {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .data-grid th, .data-grid td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-grid th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .data-grid tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .storage-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .storage-bar {
+            flex-grow: 1;
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .storage-used {
+            height: 100%;
+            background-color: var(--secondary-color);
+            width: 45%;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: white;
+        }
+
+        .primary-button {
+            background-color: var(--secondary-color);
+        }
+
+        .danger-button {
+            background-color: var(--accent-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="home.html" class="logo">GenomicsViz</a>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="vizualizationtool.html">Visualize</a>
+                <a href="datamanagement.html">Data Manager</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="data-manager-container">
+        <div class="data-section">
+            <h2>Data Storage Overview</h2>
+            <div class="storage-info">
+                <div class="storage-bar">
+                    <div class="storage-used"></div>
+                </div>
+                <div class="storage-text">
+                    <p>4.5 GB used of 10 GB total</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-section">
+            <h2>Uploaded Datasets</h2>
+            <table class="data-grid">
+                <thead>
+                    <tr>
+                        <th>Dataset Name</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                        <th>Upload Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TCGA-BRCA.csv</td>
+                        <td>Gene Expression</td>
+                        <td>2.3 GB</td>
+                        <td>2025-01-15</td>
+                        <td>
+                            <button class="button primary-button">View</button>
+                            <button class="button danger-button">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mutation-Data.tsv</td>
+                        <td>DNA Mutations</td>
+                        <td>1.1 GB</td>
+                        <td>2025-01-20</td>
+                        <td>
+                            <button class="button primary-button">View</button>
+                            <button class="button danger-button">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="data-section">
+            <h2>Import New Dataset</h2>
+            <form>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Dataset Type</label>
+                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                        <option>Gene Expression Data</option>
+                        <option>DNA Mutation Data</option>
+                        <option>Clinical Data</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">File</label>
+                    <input type="file" accept=".csv,.tsv,.json">
+                </div>
+                <button class="button primary-button">Upload Dataset</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 GenomicsViz. All rights reserved.</p>
+    </footer>
+</body>
+</html>

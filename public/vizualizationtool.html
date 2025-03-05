@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualize Data - Cancer Genomics Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.1/plotly.min.js"></script>
+    <style>
+        /* Include the same CSS as homepage, plus: */
+        .visualization-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .controls {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .control-group select,
+        .control-group input[type="file"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .plot-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 500px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .primary-button {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .secondary-button {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="home.html" class="logo">GenomicsViz</a>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="vizualizationtool.html">Visualize</a>
+                <a href="datamanagement.html">Data Manager</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="visualization-container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="data-file">Upload Data File</label>
+                <input type="file" id="data-file" accept=".csv,.tsv,.json">
+            </div>
+            <div class="control-group">
+                <label for="plot-type">Visualization Type</label>
+                <select id="plot-type">
+                    <option value="heatmap">Heatmap</option>
+                    <option value="volcano">Volcano Plot</option>
+                    <option value="mutation">Mutation Plot</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="filter-type">Filter Data</label>
+                <select id="filter-type">
+                    <option value="all">All Data</option>
+                    <option value="mutation">By Mutation Type</option>
+                    <option value="expression">By Expression Level</option>
+                    <option value="subtype">By Sample Subtype</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button class="button primary-button" onclick="generateVisualization()">Generate Plot</button>
+                <button class="button secondary-button" onclick="exportPlot()">Export Results</button>
+            </div>
+        </div>
+
+        <div class="plot-container" id="plot-area">
+            <!-- Visualization will be rendered here -->
+        </div>
+    </div>
+
+    <script>
+        function generateVisualization() {
+            const plotType = document.getElementById('plot-type').value;
+            const plotArea = document.getElementById('plot-area');
+
+            // Example data for demonstration
+            const data = {
+                heatmap: {
+                    z: [[1, 20, 30], [20, 1, 60], [30, 60, 1]],
+                    type: 'heatmap'
+                },
+                volcano: {
+                    x: Array.from({length: 100}, () => Math.random() * 4 - 2),
+                    y: Array.from({length: 100}, () => Math.random() * 8),
+                    mode: 'markers',
+                    type: 'scatter'
+                },
+                mutation: {
+                    values: [19, 26, 55],
+                    labels: ['Missense', 'Nonsense', 'Silent'],
+                    type: 'pie'
+                }
+            };
+
+            const layout = {
+                title: `${plotType.charAt(0).toUpperCase() + plotType.slice(1)} Visualization`,
+                height: 500
+            };
+
+            Plotly.newPlot(plotArea, [data[plotType]], layout);
+        }
+
+        function exportPlot() {
+            const plotArea = document.getElementById('plot-area');
+            
+            Plotly.downloadImage(plotArea, {
+                format: 'png',
+                filename: 'genomics_visualization'
+            });
+        }
+
+        // Initialize with a default visualization
+        document.addEventListener('DOMContentLoaded', generateVisualization);
+    </script>
+
+    <footer>
+        <p>&copy; 2025 GenomicsViz. All rights reserved.</p>
+    </footer>
+</body>
+</html>

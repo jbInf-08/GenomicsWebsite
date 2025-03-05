@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Cancer Genomics Tool</title>
+    <style>
+        /* Include base styles from homepage */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Documentation specific styles */
+        .docs-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: var(--background-color);
+        }
+
+        .content {
+            flex-grow: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .content h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .content h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        .content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="home.html" class="logo">GenomicsViz</a>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="vizualizationtool.html">Visualize</a>
+                <a href="datamanagement.html">Data Manager</a>
+                <a href="documentation.html">Documentation</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <aside class="sidebar">
+            <ul class="sidebar-nav">
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#data-formats">Data Formats</a></li>
+                <li><a href="#visualizations">Visualizations</a></li>
+                <li><a href="#api">API Reference</a></li>
+                <li><a href="#examples">Example Workflows</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Documentation</h1>
+            <p>Welcome to the GenomicsViz documentation. Here you'll find comprehensive guides and references to help you make the most of our cancer genomics visualization tool.</p>
+
+            <h2 id="getting-started">Getting Started</h2>
+            <p>To begin using GenomicsViz, follow these steps:</p>
+            <ol style="margin-left: 2rem;">
+                <li>Upload your genomics data through the Data Manager</li>
+                <li>Select your desired visualization type</li>
+                <li>Configure visualization parameters</li>
+                <li>Generate and export your results</li>
+            </ol>
+
+            <h2 id="data-formats">Supported Data Formats</h2>
+            <p>GenomicsViz accepts the following file formats:</p>
+            <div class="code-block">
+                - CSV (Comma-Separated Values)
+                - TSV (Tab-Separated Values)
+                - JSON (JavaScript Object Notation)
+            </div>
+
+            <h2 id="visualizations">Available Visualizations</h2>
+            <p>Our tool provides several visualization types:</p>
+            <ul style="margin-left: 2rem;">
+                <li>Heatmaps for gene expression data</li>
+                <li>Volcano plots for differential expression analysis</li>
+                <li>Mutation plots for genomic alterations</li>
+            </ul>
+
+            <h2 id="api">API Reference</h2>
+            <p>For programmatic access, use our RESTful API:</p>
+            <div class="code-block">
+                GET /api/v1/data
+                POST /api/v1/visualize
+                GET /api/v1/export
+            </div>
+
+            <h2 id="examples">Example Workflows</h2>
+            <p>Common analysis workflows and tutorials...</p>
+
+            <h2 id="troubleshooting">Troubleshooting</h2>
+            <p>Common issues and their solutions...</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 GenomicsViz. All rights reserved.</p>
+    </footer>
+</body>
+</html>
